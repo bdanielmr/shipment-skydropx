@@ -1,14 +1,14 @@
 /* eslint-disable prettier/prettier */
 import HomeSearchMovie from '../views/HomeSearchMovie/HomeSearchMovie';
 import Error404 from '../views/Error404/Error404';
-import SplashStartSearch from '../components/SplashStartSearch/SplashStartSearch';
+import SplashStartSkydropx from '../components/splash-start-skydropx/SplashStartSkydropx';
 import InfoPageSearchMovie from '../views/InfoPageSearchMovie/InfoPageSearchMovie';
 export default [
   {
-    name: 'SplashStartSearch',
+    name: 'SplashStartSkydropx',
     url: '/',
     path: '/',
-    component: SplashStartSearch,
+    component: SplashStartSkydropx,
     exact: true
   },
   {
