@@ -14,7 +14,8 @@ const Error404 = (props) => {
           alignItems: 'center',
           justifyContent: 'center',
           flexDirection: 'column'
-        }}>
+        }}
+      >
         {' '}
         <h1>Oops!</h1>
         <a href="/">regresa al inicio</a>
