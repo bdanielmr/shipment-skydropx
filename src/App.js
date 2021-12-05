@@ -1,10 +1,13 @@
+import React from 'react';
 import './App.css';
-import HeaderSkydropx from './components/header_skydropx/HeaderSkydropx';
-
+import ViewsRouter from './router';
+import StoreProvider from './store/StoreProvider';
 function App() {
   return (
     <div className="App">
-      <HeaderSkydropx />
+      <StoreProvider>
+        <ViewsRouter />
+      </StoreProvider>
     </div>
   );
 }

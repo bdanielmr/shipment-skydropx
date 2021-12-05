@@ -4,12 +4,11 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch, useLocation } from 'react-router-dom';
 import routes from './routes.js';
 import InfoPageSearchMovie from '../views/InfoPageSearchMovie/InfoPageSearchMovie';
-import CustomHeader from '../components/CustomHeader/CustomHeader.jsx';
+
 // eslint-disable-next-line react/prop-types
 export default function ViewsRouter(props) {
   return (
     <Router>
-      <CustomHeader />
       <Views />
     </Router>
   );

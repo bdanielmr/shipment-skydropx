@@ -6,6 +6,9 @@ const HeaderSkydropx = (props) => {
   return (
     <div className={styles['custom-header']}>
       <img src={Logo} />
+      <span>
+        <hr />
+      </span>
     </div>
   );
 };
