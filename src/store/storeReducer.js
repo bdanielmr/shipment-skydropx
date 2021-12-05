@@ -47,6 +47,7 @@ const storeReducer = (state, action) => {
         dataSkyAdvice: action.payload
       };
     case types.getDataShipmentsSuccess:
+      console.log('0action.payload', action.payload);
       return {
         ...state,
         dataShipments: action.payload

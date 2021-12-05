@@ -1,6 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { StoreContext } from '../store/StoreProvider';
+import { types } from '../store/storeReducer';
 
 const useForm = (callback, validate) => {
+  const [, dispatch] = useContext(StoreContext);
   const [values, setValues] = useState({
     codeZipOrigin: '',
     codeZipDestination: '',
@@ -27,6 +30,10 @@ const useForm = (callback, validate) => {
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
       callback();
+      dispatch({
+        type: types.getDataSkyAdviceSuccess,
+        payload: values
+      });
     }
   }, [errors]);
 
