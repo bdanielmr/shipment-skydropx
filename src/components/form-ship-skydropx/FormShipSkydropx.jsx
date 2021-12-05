@@ -1,44 +1,48 @@
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from './formShipSkydropx.module.scss';
 import Globe from '../../img/globe.svg';
 import InputSkydropx from '../input-skydropx/InputSkydropx';
 import StepSkydropx from '../step-skydropx/StepSkydropx';
+import useForm from '../../hooks/useForm';
+import validateForm from '../../utils/validateForm';
 
-const optionInput = [
-  {
-    value: '',
-    error: '',
-    input: 'test '
-  },
-  {
-    value: '',
-    error: '',
-    input: 'test 2'
-  },
-  {
-    value: '',
-    error: '',
-    input: 'test 3'
-  }
-];
-const FormShipSkydropx = (props) => {
+const FormShipSkydropx = ({ submitForm }) => {
+  const { handleChange, handleSubmit, values, errors } = useForm(submitForm, validateForm);
+
+  console.log('values', values);
+  console.log('errors', errors);
   return (
     <div className={styles['custom-form']}>
-      <div className={styles['custom-form-globe']}>
-        <img src={Globe} />
-        <StepSkydropx />
-        <div></div>
-      </div>
-      <div className={styles['custom-form-inputs']}>
-        {!!optionInput &&
-          optionInput.map((input, index) => {
-            return <InputSkydropx key={index} />;
-          })}
-      </div>
+      <form onSubmit={handleSubmit} className="form" noValidate>
+        <div className={styles['custom-form-globe']}>
+          <img src={Globe} />
+          <StepSkydropx />
+          <div></div>
+        </div>
+        <div className={styles['custom-form-inputs']}>
+          {!!values &&
+            Object.keys(values).map((key) => {
+              return (
+                <InputSkydropx
+                  key={key}
+                  name={key}
+                  value={values[key]}
+                  error={errors}
+                  placeholder={key.replace(/([A-Z])/g, ' $1').trim()}
+                  handleChange={handleChange}
+                />
+              );
+            })}
+          <button type="submit">Sign up</button>
+        </div>
+      </form>
     </div>
   );
 };
 
-FormShipSkydropx.propTypes = {};
+FormShipSkydropx.propTypes = {
+  submitForm: PropTypes.func
+};
 
 export default FormShipSkydropx;

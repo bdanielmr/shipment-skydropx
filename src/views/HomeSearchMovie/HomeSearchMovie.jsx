@@ -9,6 +9,7 @@ import HeaderSkydropx from '../../components/header_skydropx/HeaderSkydropx';
 import FormShipSkydropx from '../../components/form-ship-skydropx/FormShipSkydropx';
 
 const HomeSearchMovie = (props) => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [store] = useContext(StoreContext);
   const { listMovies, paginationList } = store;
   const history = useHistory();
@@ -31,10 +32,13 @@ const HomeSearchMovie = (props) => {
     history.push({ search: params.toString() });
   }, [paginationList, history]);
 
+  function submitForm() {
+    setIsSubmitted(true);
+  }
   return (
     <>
       <HeaderSkydropx />
-      <FormShipSkydropx />
+      <FormShipSkydropx submitForm={submitForm} />
     </>
   );
 };
