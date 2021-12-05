@@ -1,48 +1,55 @@
 /* eslint-disable no-case-declarations */
 const types = {
-  getTrendingMoviesSuccess: 'get - trending - movies - success',
-  getTrendingMoviesError: 'get - trending - movies - error',
-  getSearchMovies: 'get - search - movies',
-  getPaginaMovie: 'get - pagina - movie',
-  getInfoMovie: 'get - info - movie'
+  getDataSkyAdviceSuccess: 'get - data - skyadvice - success',
+  getDataShipmentsSuccess: 'get - data - shipments - success'
 };
 
 const initialStore = {
-  movie: {},
-  listMovies: [],
-  listMoviesLoading: false,
-  listMoviesError: [],
-  paginationList: null,
-  infoMovie: {}
+  dataSkyAdvice: {},
+  dataShipments: {
+    address_from: {
+      province: 'Ciudad de México',
+      city: 'Azcapotzalco',
+      name: 'Jose Fernando',
+      zip: '03230',
+      country: 'MX',
+      address1: 'Av. Principal #234',
+      company: 'skydropx',
+      address2: 'Centro',
+      phone: '5555555555',
+      email: 'skydropx@email.com'
+    },
+    parcels: [
+      { weight: '1', distance_unit: 'CM', mass_unit: 'KG', height: 20, width: 30, length: 10 }
+    ],
+    address_to: {
+      province: 'Jalisco',
+      city: 'Guadalajara',
+      name: 'Jorge Fernández',
+      zip: '03400',
+      country: 'MX',
+      address1: ' Av. Lázaro Cárdenas #234',
+      company: '-',
+      address2: 'Americana',
+      phone: '5555555555',
+      email: 'ejemplo@skydropx.com',
+      reference: 'Frente a tienda de abarro',
+      contents: 'trigo'
+    }
+  }
 };
 
 const storeReducer = (state, action) => {
   switch (action.type) {
-    case types.getTrendingMoviesSuccess:
+    case types.getDataSkyAdviceSuccess:
       return {
         ...state,
-        listMovies: action.payload,
-        paginationList: action.allPayload
+        dataSkyAdvice: action.payload
       };
-    case types.getTrendingMoviesError:
+    case types.getDataShipmentsSuccess:
       return {
         ...state,
-        listMoviesError: action.payload
-      };
-    case types.getPaginaMovie:
-      return {
-        ...state,
-        listMovies: action.payload
-      };
-    case types.getInfoMovie:
-      return {
-        ...state,
-        infoMovie: action.payload
-      };
-    case types.getSearchMovies:
-      return {
-        ...state,
-        listMovies: action.payload
+        dataShipments: action.payload
       };
     default:
       return state;

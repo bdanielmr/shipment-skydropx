@@ -10,8 +10,6 @@ import validateForm from '../../utils/validateForm';
 const FormShipSkydropx = ({ submitForm }) => {
   const { handleChange, handleSubmit, values, errors } = useForm(submitForm, validateForm);
 
-  console.log('values', values);
-  console.log('errors', errors);
   return (
     <div className={styles['custom-form']}>
       <form onSubmit={handleSubmit} className="form" noValidate>
@@ -22,13 +20,13 @@ const FormShipSkydropx = ({ submitForm }) => {
         </div>
         <div className={styles['custom-form-inputs']}>
           {!!values &&
-            Object.keys(values).map((key) => {
+            Object.keys(values)?.map((key) => {
               return (
                 <InputSkydropx
                   key={key}
                   name={key}
                   value={values[key]}
-                  error={errors}
+                  error={errors[key]?.slice(0, 10) === key?.slice(0, 10) ? errors[key] : ''}
                   placeholder={key.replace(/([A-Z])/g, ' $1').trim()}
                   handleChange={handleChange}
                 />

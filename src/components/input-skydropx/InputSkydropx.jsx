@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './inputSkydropx.module.scss';
 const InputSkydropx = ({ name, value, error, handleChange, placeholder }) => {
+  console.log('error', error);
   return (
     <div className={styles['custom-input']}>
       <label className="form-label">
@@ -15,7 +16,7 @@ const InputSkydropx = ({ name, value, error, handleChange, placeholder }) => {
         value={value}
         onChange={handleChange}
       />
-      {error.value && <p>{error.value}</p>}
+      {error && <p>{error}</p>}
     </div>
   );
 };
@@ -23,14 +24,14 @@ const InputSkydropx = ({ name, value, error, handleChange, placeholder }) => {
 InputSkydropx.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string,
-  error: PropTypes.object,
+  error: PropTypes.string,
   handleChange: PropTypes.func,
   placeholder: PropTypes.string
 };
 InputSkydropx.defaultProps = {
   name: '',
   value: '',
-  error: {},
+  error: '',
   handleChange: () => {},
   placeholder: 'input'
 };

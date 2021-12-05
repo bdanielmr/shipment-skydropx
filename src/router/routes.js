@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import HomeSearchMovie from '../views/HomeSearchMovie/HomeSearchMovie';
+import Home from '../views/Home/Home';
 import Error404 from '../views/Error404/Error404';
 import SplashStartSkydropx from '../components/splash-start-skydropx/SplashStartSkydropx';
 import InfoPageSearchMovie from '../views/InfoPageSearchMovie/InfoPageSearchMovie';
@@ -12,10 +12,10 @@ export default [
     exact: true
   },
   {
-    name: 'HomeSearchMovie',
+    name: 'Home',
     url: '/home',
     path: '/home',
-    component: HomeSearchMovie,
+    component: Home,
     exact: true
   },
   {

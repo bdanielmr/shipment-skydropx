@@ -15,7 +15,7 @@ export default function validateForm(values) {
   }
 
   if (!values.weightPerPackageInKg) {
-    errors.weightPerPackageInKg = 'weightPerPackageInKg is required';
+    errors.weightPerPackageInKg = 'weightPerPackageInKg required';
   } else if (values.weightPerPackageInKg.length < 6) {
     errors.weightPerPackageInKg = 'weightPerPackageInKg needs to be 6 characters or more';
   }

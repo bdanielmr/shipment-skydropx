@@ -1,8 +1,9 @@
-import { TYPE_FETCHING, BASE_URL } from './constants';
+import { TYPE_FETCHING, BASE_URL, API_KEY } from './constants';
 
-export const getApiZone = async (
+export const getApiSky = async (
   url = '',
-  method = TYPE_FETCHING.get,
+  method = TYPE_FETCHING.post,
+  body = {},
   params = {},
   asyncr = false,
   file = false
@@ -11,9 +12,10 @@ export const getApiZone = async (
   const resp = await fetch(BaseUrl, {
     method,
     headers: {
-      Accept: '*/*',
-      'Accept-Encoding': 'gzip, deflate, br'
-    }
+      Authorization: `Token token=${API_KEY}`,
+      'Content-Type': 'application/json'
+    },
+    body
   })
     .then((response) => response.json())
     .catch((err) => err);
