@@ -6,6 +6,8 @@ import style from './homeSearchMovie.module.scss';
 import { StoreContext } from '../../store/StoreProvider';
 import { useHistory } from 'react-router-dom';
 import HeaderSkydropx from '../../components/header_skydropx/HeaderSkydropx';
+import FormShipSkydropx from '../../components/form-ship-skydropx/FormShipSkydropx';
+
 const HomeSearchMovie = (props) => {
   const [store] = useContext(StoreContext);
   const { listMovies, paginationList } = store;
@@ -32,6 +34,7 @@ const HomeSearchMovie = (props) => {
   return (
     <>
       <HeaderSkydropx />
+      <FormShipSkydropx />
     </>
   );
 };
