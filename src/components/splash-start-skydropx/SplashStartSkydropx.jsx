@@ -8,7 +8,7 @@ const SplashStartSkydropx = ({ history }) => {
   return (
     <div className={style['splash-background']}>
       <img src={Logo} />
-      <ButtonSkydropx label="Go" />
+      <ButtonSkydropx route="/home" label="Go" />
       <h3 className={style['splash-text-h3']}>Make a Shipment.</h3>
     </div>
   );

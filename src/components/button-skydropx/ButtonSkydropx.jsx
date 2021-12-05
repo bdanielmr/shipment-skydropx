@@ -1,17 +1,20 @@
 import PropTypes from 'prop-types';
 import styles from './buttonSkydropx.module.scss';
-const ButtonSkydropx = ({ label }) => {
+import { Link } from 'react-router-dom';
+const ButtonSkydropx = ({ label, route }) => {
   return (
-    <div className={styles['custom-button']}>
+    <Link to={route} className={styles['custom-button']}>
       <button>{label}</button>
-    </div>
+    </Link>
   );
 };
 
 ButtonSkydropx.propTypes = {
-  label: PropTypes.string
+  label: PropTypes.string,
+  route: PropTypes.string
 };
 ButtonSkydropx.defaultProps = {
-  label: 'Button'
+  label: 'Button',
+  route: '/'
 };
 export default ButtonSkydropx;
