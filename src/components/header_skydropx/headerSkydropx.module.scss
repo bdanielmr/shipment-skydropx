@@ -1,0 +1,13 @@
+.custom-header {
+  display: flex;
+  img {
+    width: 200px;
+    padding: 2%;
+    @media (max-width: 480px) {
+      width: 100px;
+    }
+  }
+  @media (max-width: 480px) {
+    justify-content: center;
+  }
+}
