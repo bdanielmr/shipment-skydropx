@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import styles from './formShipSkydropx.module.scss';
 import Globe from '../../img/globe.svg';
 import InputSkydropx from '../input-skydropx/InputSkydropx';
+import StepSkydropx from '../step-skydropx/StepSkydropx';
+
 const optionInput = [
   {
     value: '',
@@ -24,6 +26,8 @@ const FormShipSkydropx = (props) => {
     <div className={styles['custom-form']}>
       <div className={styles['custom-form-globe']}>
         <img src={Globe} />
+        <StepSkydropx />
+        <div></div>
       </div>
       <div className={styles['custom-form-inputs']}>
         {!!optionInput &&
