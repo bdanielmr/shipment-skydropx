@@ -10,45 +10,55 @@ import FormShipSkydropx from '../../components/form-ship-skydropx/FormShipSkydro
 import { types } from '../../store/storeReducer';
 import PanelShipment from '../../components/panel_shipment/PanelShipment';
 const Home = (props) => {
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [store, dispatch] = useContext(StoreContext);
-  const { dataShipments, dataSkyAdvice } = store;
-  const [dataShip, setDataShip] = useState(null);
+
+  const { dataShipments, dataSkyAdvice, isSubmitted, postDataShipments } = store;
+
   const history = useHistory();
   /**
    * 
   apiPostShipments(JSON.stringify(dataShipments));
    */
   function submitForm() {
-    setIsSubmitted(true);
+    dispatch({
+      type: types.getIsSubmittedSuccess,
+      payload: true
+    });
   }
-  const extraShipments = () => {
+  const extraShipments = async () => {
     const deep = JSON.parse(JSON.stringify(dataShipments));
-    setDataShip({
-      ...deep,
-      address_from: { ...deep?.['address_from'], zip: dataSkyAdvice?.codeZipOrigin },
-      address_to: { ...deep?.['address_to'], zip: dataSkyAdvice?.codeZipDestination },
-      parcels: [
-        ...deep?.['parcels'].map((data) => {
-          if (data.weight) {
-            data.weight = dataSkyAdvice?.weightPerPackageInKg;
-          }
-          return data;
-        })
-      ]
+    dispatch({
+      type: types.postDataShipmentsSuccess,
+      payload: {
+        step: 2,
+        postDataShip: {
+          ...deep,
+          address_from: { ...deep?.['address_from'], zip: dataSkyAdvice?.codeZipOrigin },
+          address_to: { ...deep?.['address_to'], zip: dataSkyAdvice?.codeZipDestination },
+          parcels: [
+            ...deep?.['parcels'].map((data) => {
+              if (data.weight) {
+                data.weight = dataSkyAdvice?.weightPerPackageInKg;
+              }
+              return data;
+            })
+          ]
+        }
+      }
     });
   };
 
   useEffect(() => {
     isSubmitted && extraShipments();
   }, [dataSkyAdvice]);
+  console.log('0postDataShip', dataSkyAdvice);
   return (
     <>
       <HeaderSkydropx />
       {!isSubmitted ? (
         <FormShipSkydropx submitForm={submitForm} />
       ) : (
-        <PanelShipment body={{ step: '2', dataShip }} />
+        <PanelShipment postDataShipments={postDataShipments} />
       )}
     </>
   );

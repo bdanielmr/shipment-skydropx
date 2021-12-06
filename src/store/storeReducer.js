@@ -1,10 +1,14 @@
 /* eslint-disable no-case-declarations */
 const types = {
+  getIsSubmittedSuccess: 'get - is - submitted - success',
   getDataSkyAdviceSuccess: 'get - data - skyadvice - success',
-  getDataShipmentsSuccess: 'get - data - shipments - success'
+  getDataShipmentsSuccess: 'get - data - shipments - success',
+  postDataShipmentsSuccess: 'post - data - shipments - success',
+  getTableOptionsSuccess: 'get - table - options - success'
 };
 
 const initialStore = {
+  isSubmitted: false,
   dataSkyAdvice: {},
   dataShipments: {
     address_from: {
@@ -36,21 +40,37 @@ const initialStore = {
       reference: 'Frente a tienda de abarro',
       contents: 'trigo'
     }
-  }
+  },
+  postDataShipments: {},
+  tableOptions: []
 };
 
 const storeReducer = (state, action) => {
   switch (action.type) {
+    case types.getIsSubmittedSuccess:
+      return {
+        ...state,
+        isSubmitted: action.payload
+      };
     case types.getDataSkyAdviceSuccess:
       return {
         ...state,
         dataSkyAdvice: action.payload
       };
     case types.getDataShipmentsSuccess:
-      console.log('0action.payload', action.payload);
       return {
         ...state,
         dataShipments: action.payload
+      };
+    case types.postDataShipmentsSuccess:
+      return {
+        ...state,
+        postDataShipments: action.payload
+      };
+    case types.getTableOptionsSuccess:
+      return {
+        ...state,
+        tableOptions: action.payload
       };
     default:
       return state;

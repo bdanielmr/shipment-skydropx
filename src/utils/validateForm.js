@@ -20,6 +20,8 @@ export default function validateForm(values) {
 
   if (!values.weightPerPackageInKg) {
     errors.weightPerPackageInKg = 'weightPerPackageInKg required';
+  } else if (!/^[0-9]+$/.test(values.weightPerPackageInKg.trim())) {
+    errors.weightPerPackageInKg = 'weightPerPackageInKg only number';
   } else if (values.weightPerPackageInKg > 100) {
     errors.weightPerPackageInKg = 'weightPerPackageInKg needs to be no more to 100kg';
   }

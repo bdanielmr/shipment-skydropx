@@ -6,12 +6,12 @@ import InputSkydropx from '../input-skydropx/InputSkydropx';
 import StepSkydropx from '../step-skydropx/StepSkydropx';
 import useForm from '../../hooks/useForm';
 import validateForm from '../../utils/validateForm';
-
+import LabelForm from '../label_form/LabelForm';
 const FormShipSkydropx = ({ submitForm }) => {
   const { handleChange, handleSubmit, values, errors } = useForm(submitForm, validateForm);
 
   return (
-    <div className={styles['custom-form']}>
+    <LabelForm>
       <form onSubmit={handleSubmit} className="form" noValidate>
         <div className={styles['custom-form-globe']}>
           <img src={Globe} />
@@ -35,7 +35,7 @@ const FormShipSkydropx = ({ submitForm }) => {
           <button type="submit">Sign up</button>
         </div>
       </form>
-    </div>
+    </LabelForm>
   );
 };
 
