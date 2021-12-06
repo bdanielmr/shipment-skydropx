@@ -1,0 +1,62 @@
+.table-form-skydropx {
+  .term-grid {
+    max-width: 1000px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 2em;
+    color: #222;
+    border-bottom: 1px solid #ddd;
+    padding: 1em 0;
+  }
+
+  .term-grid label {
+    font-weight: 800;
+  }
+  .term-grid label:first-child {
+    text-align: right;
+  }
+
+  .grid-header {
+    text-decoration: underline;
+    border-bottom: unset;
+  }
+
+  @media (max-width: 600px) {
+    .term-grid {
+      grid-template-columns: 1fr;
+      grid-gap: 0.5em;
+    }
+
+    .term-grid label:first-child {
+      text-align: left;
+      margin: 0;
+    }
+
+    .alternate {
+      margin-top: -10px;
+      font-style: italic;
+      order: 1;
+    }
+
+    .definition {
+      order: 2;
+    }
+
+    .grid-header {
+      display: none;
+    }
+  }
+
+  body {
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  .wrapper {
+    padding: 0 1em;
+  }
+}
