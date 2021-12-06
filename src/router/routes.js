@@ -2,7 +2,7 @@
 import Home from '../views/Home/Home';
 import Error404 from '../views/Error404/Error404';
 import SplashStartSkydropx from '../components/splash-start-skydropx/SplashStartSkydropx';
-import InfoPageSearchMovie from '../views/InfoPageSearchMovie/InfoPageSearchMovie';
+import InfoPageShipment from '../views/InfoPageShipment/InfoPageShipment';
 export default [
   {
     name: 'SplashStartSkydropx',
@@ -19,10 +19,17 @@ export default [
     exact: true
   },
   {
-    name: 'InfoPageSearchMovie',
-    url: '/movie',
-    path: '/movie/:id',
-    component: InfoPageSearchMovie,
+    name: 'InfoPageShipment',
+    url: '/shipments',
+    path: '/shipments',
+    component: InfoPageShipment,
+    exact: true
+  },
+  {
+    name: 'InfoPageShipment',
+    url: '/shipment',
+    path: '/shipment/:id',
+    component: InfoPageShipment,
     exact: true
   },
   {

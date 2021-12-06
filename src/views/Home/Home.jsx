@@ -50,16 +50,13 @@ const Home = (props) => {
 
   useEffect(() => {
     isSubmitted && extraShipments();
+    isSubmitted && history.push('/shipments');
   }, [dataSkyAdvice]);
   console.log('0postDataShip', dataSkyAdvice);
   return (
     <>
       <HeaderSkydropx />
-      {!isSubmitted ? (
-        <FormShipSkydropx submitForm={submitForm} />
-      ) : (
-        <PanelShipment postDataShipments={postDataShipments} />
-      )}
+      {!isSubmitted ? <FormShipSkydropx submitForm={submitForm} /> : null}
     </>
   );
 };

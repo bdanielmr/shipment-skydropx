@@ -1,8 +1,13 @@
 .custom-header {
   display: flex;
   flex-direction: column;
-  padding: 13px;
-  img {
+  padding-top: 13px;
+  padding-left: 13px;
+  font-size: 22px;
+  text-decoration: none;
+  color: #000;
+  label {
+    height: 40px;
     width: 200px;
 
     @media (max-width: 480px) {
@@ -17,7 +22,8 @@
     hr {
       border: none;
       position: absolute;
-      top: 45px;
+      top: 42px;
+      left: 40px;
       width: 140px;
       background: #60d192;
       height: 6px;

@@ -1,15 +1,22 @@
-import React, { useContext } from 'react';
+/* eslint-disable prettier/prettier */
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { StoreContext } from '../../store/StoreProvider';
 import styles from './tableFormSkydropx.module.scss';
 const TableFormSkydropx = ({ options, tableOption }) => {
   const [store] = useContext(StoreContext);
   const { tableOptions } = store;
+  const [isBackground, setIsBackground] = useState(false);
+  const [activeIndex, setActiveIndex] = useState('');
   console.log('tableOptions?.data?.included', tableOptions.included);
+  const handleFocus = (e, option) => {
+    console.log('focus', e.target.id);
+    console.log('focus', option.id);
+    setIsBackground(true);
+  };
   return (
     <div className={styles['table-form-skydropx']}>
       <div id="app" className={styles['wrapper']}>
-        <h2>Definition List</h2>
         <div className={styles['term-grid'] + ' ' + styles['grid-header']}>
           {!!options &&
             options.map((opt, index) => {
@@ -18,13 +25,25 @@ const TableFormSkydropx = ({ options, tableOption }) => {
         </div>
         {tableOptions?.included?.map((opt, ind) => {
           return (
-            <div key={ind} className={styles['term-grid']}>
-              <label>d$</label>
-              <div className={styles['definition']}>skydropx</div>
-              <div className={styles['alternate']}>fhl</div>
-              <div className={styles['alternate']}>5</div>
-              <div className={styles['alternate']}>128</div>
-            </div>
+            opt?.attributes?.amount_local && (
+              <button
+                key={ind}
+                id={opt?.id}
+                style={
+                  ind === activeIndex
+                    ? { backgroundColor: '#60d192', border: '1px solid black' }
+                    : null
+                }
+                onClick={() => setActiveIndex(ind)}
+                className={styles['term-grid']}
+                onFocus={(e) => handleFocus(e, opt)}>
+                <label>{opt?.attributes?.amount_local}$</label>
+                <div className={styles['definition']}>{opt?.attributes?.provider}</div>
+                <div className={styles['alternate']}>{opt?.attributes?.service_level_name}</div>
+                <div className={styles['alternate']}>{opt?.attributes?.days}</div>
+                <div className={styles['alternate']}>{opt?.attributes?.total_pricing}$</div>
+              </button>
+            )
           );
         })}
       </div>
@@ -42,7 +61,7 @@ TableFormSkydropx.defaultProps = {
     { option: 'Provider' },
     { option: 'Service' },
     { option: 'Shipping Days' },
-    { option: 'Total Cost' }
+    { option: 'Total Price' }
   ],
   tableOption: [{}]
 };

@@ -3,9 +3,15 @@
   position: relative;
   height: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
 
   @media (max-width: 800px) {
     grid-template-columns: 1fr;
   }
+}
+.container-right-panel {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 10%;
 }

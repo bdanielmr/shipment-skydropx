@@ -1,15 +1,21 @@
 .table-form-skydropx {
   .term-grid {
-    max-width: 1000px;
+    width: 100%;
     margin: auto;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 2em;
+    grid-template-columns: 1fr 2fr 1.5fr 1fr 1fr;
+    grid-gap: 1em;
     color: #222;
-    border-bottom: 1px solid #ddd;
-    padding: 1em 0;
-  }
+    padding: 1em 0px;
+    background: none;
+    border: none;
 
+    border-bottom: 1px solid gray;
+    cursor: pointer;
+  }
+  .active-background {
+    background: palegreen;
+  }
   .term-grid label {
     font-weight: 800;
   }
@@ -20,12 +26,15 @@
   .grid-header {
     text-decoration: underline;
     border-bottom: unset;
+    background: rgb(152, 251, 152);
   }
 
   @media (max-width: 600px) {
     .term-grid {
       grid-template-columns: 1fr;
-      grid-gap: 0.5em;
+      grid-gap: 1em;
+      padding: 1em 0;
+      width: 300px;
     }
 
     .term-grid label:first-child {
@@ -46,10 +55,6 @@
     .grid-header {
       display: none;
     }
-  }
-
-  body {
-    font-family: 'Open Sans', sans-serif;
   }
 
   h2 {

@@ -3,7 +3,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, useLocation } from 'react-router-dom';
 import routes from './routes.js';
-import InfoPageSearchMovie from '../views/InfoPageSearchMovie/InfoPageSearchMovie';
+import InfoPageShipment from '../views/InfoPageShipment/InfoPageShipment';
 
 // eslint-disable-next-line react/prop-types
 export default function ViewsRouter(props) {
@@ -33,7 +33,7 @@ function Views({ dataId, cToken, aToken, stylePa }) {
           );
         })}
       </Switch>
-      {background && <Route path="/movie/:id" children={<InfoPageSearchMovie />} />}
+      {background && <Route path="/shipment/:id" children={<InfoPageShipment />} />}
     </>
   );
 }

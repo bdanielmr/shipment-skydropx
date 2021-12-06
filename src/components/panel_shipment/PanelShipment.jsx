@@ -8,26 +8,26 @@ import TableFormSkydropx from '../table_form_skydropx/TableFormSkydropx';
 import { types } from '../../store/storeReducer';
 const PanelShipment = ({ postDataShipments }) => {
   const [store, dispatch] = useContext(StoreContext);
-  const { isSubmitted } = store;
+  const { tableOptions } = store;
   useEffect(() => {
-    if (!localStorage?.OPTIONSHIP) {
-      !!postDataShipments?.postDataShip &&
-        apiPostShipments(JSON.stringify(postDataShipments?.postDataShip)).then((res) => {
-          dispatch({
-            type: types.getTableOptionsSuccess,
-            payload: res
-          });
-          localStorage.setItem('OPTIONSHIP', JSON.stringify(res));
+    !!postDataShipments?.postDataShip &&
+      apiPostShipments(JSON.stringify(postDataShipments?.postDataShip)).then((res) => {
+        dispatch({
+          type: types.getTableOptionsSuccess,
+          payload: res
         });
-    }
+        localStorage.setItem('OPTIONSHIP', JSON.stringify(res));
+      });
   }, [postDataShipments?.postDataShip]);
+  console.log('use table', tableOptions);
   return (
     <LabelForm>
       <div className={styles['panel-container']}>
-        <div className={styles['container-left-panel']}>
+        <div className={styles['container-left-panel']}></div>
+        <div className={styles['container-right-panel']}>
           <TableFormSkydropx />
+          <button>send</button>
         </div>
-        <div className={styles['container-right-panel']}>bye</div>
       </div>
     </LabelForm>
   );

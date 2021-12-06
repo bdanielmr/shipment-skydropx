@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const HeaderSkydropx = ({ route }) => {
   return (
     <Link to={route} className={styles['custom-header']}>
-      <img src={Logo} />
+      <label>Shipmentdropx</label>
       <span>
         <hr />
       </span>

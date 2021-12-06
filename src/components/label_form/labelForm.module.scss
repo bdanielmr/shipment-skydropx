@@ -7,4 +7,9 @@
   height: 80vh;
   display: flex;
   flex-direction: column;
+  @media (max-width: 600px) {
+    margin: 0;
+    width: 100%;
+    box-shadow: none;
+  }
 }
