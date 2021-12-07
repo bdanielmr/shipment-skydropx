@@ -21,7 +21,7 @@ function Views({ dataId, cToken, aToken, stylePa }) {
   let location = useLocation();
   const background = location.state && location.state.background;
   const backgroundError = location.state && location.state.backgroundError;
-  console.log('VER BACKGROUN', location.state);
+
   return (
     <>
       <Switch location={background || location}>

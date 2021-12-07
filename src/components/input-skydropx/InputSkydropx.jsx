@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './inputSkydropx.module.scss';
 const InputSkydropx = ({ name, value, error, handleChange, placeholder }) => {
-  console.log('error', error);
   return (
     <div className={styles['custom-input']}>
       <label className="form-label">

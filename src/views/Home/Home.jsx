@@ -52,7 +52,7 @@ const Home = (props) => {
     isSubmitted && extraShipments();
     isSubmitted && history.push('/shipments');
   }, [dataSkyAdvice]);
-  console.log('0postDataShip', dataSkyAdvice);
+
   return (
     <>
       <HeaderSkydropx />

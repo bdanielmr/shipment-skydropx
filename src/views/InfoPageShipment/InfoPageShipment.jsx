@@ -24,7 +24,6 @@ const InfoPageShipment = ({ match }) => {
     isSubmitForm();
   }, []);
 
-  console.log('isSubmitted isSubmitted', isSubmitted);
   return (
     <>
       <HeaderSkydropx />

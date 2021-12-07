@@ -9,7 +9,6 @@ const CardShipment = () => {
   const { data } = ratesOrder;
   const { attributes: atData } = !!data && data;
   const { error_message: setError } = !!atData && atData;
-  console.log('into card', setError);
   function RenderObject() {
     return Object.keys(ratesOrder?.data?.attributes).map((obj, i) => {
       console.log(obj, ratesOrder?.data?.attributes[obj], 'obj');

@@ -46,7 +46,7 @@ const TableFormSkydropx = ({ options, tableOption }) => {
   useEffect(() => {
     orderShip();
   }, [tableOptions]);
-  console.log('activeIndex', activeIndex);
+
   return (
     <div className={styles['table-form-skydropx']}>
       <div id="app" className={styles['wrapper']}>

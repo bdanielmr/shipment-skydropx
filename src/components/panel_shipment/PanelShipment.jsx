@@ -20,7 +20,7 @@ const PanelShipment = ({ postDataShipments }) => {
         localStorage.setItem('OPTIONSHIP', JSON.stringify(res));
       });
   }, [postDataShipments?.postDataShip]);
-  console.log('use table', tableOptions);
+
   return (
     <div className={styles['panel-container']}>
       <div className={styles['container-left-panel']}>

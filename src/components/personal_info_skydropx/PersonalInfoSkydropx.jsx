@@ -5,7 +5,7 @@ import styles from './personalInfoSkydropx.module.scss';
 const PersonalInfoSkydropx = () => {
   const [store] = useContext(StoreContext);
   const { tableOptions } = store;
-  console.log(tableOptions);
+
   return (
     <div className={styles['custom-personal-info']}>
       <p className={styles['title-personal-info']}>Package Information</p>

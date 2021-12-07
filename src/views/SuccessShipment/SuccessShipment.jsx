@@ -20,8 +20,6 @@ const SuccessShipment = ({ match }) => {
   const { postDataShipments, isSubmitted, ratesOrder } = store;
 
   const params = useParams();
-  console.log('params isSubmitted', params);
-  console.log('ratesOrder ratesOrder', ratesOrder);
 
   useEffect(() => {
     async function fetchInfoShipment() {
@@ -36,7 +34,7 @@ const SuccessShipment = ({ match }) => {
     }
     fetchInfoShipment();
   }, [params]);
-  console.log('shipmentInfo FINAL', shipmentInfo);
+
   return (
     <div className={styles['custom-success-shipment']}>
       <CardShipment />
