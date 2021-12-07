@@ -3,7 +3,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, useLocation } from 'react-router-dom';
 import routes from './routes.js';
-import InfoPageShipment from '../views/InfoPageShipment/InfoPageShipment';
+
+import SuccessShipment from '../views/SuccessShipment/SuccessShipment.jsx';
 
 // eslint-disable-next-line react/prop-types
 export default function ViewsRouter(props) {
@@ -19,6 +20,8 @@ function Views({ dataId, cToken, aToken, stylePa }) {
   // eslint-disable-next-line prefer-const
   let location = useLocation();
   const background = location.state && location.state.background;
+  const backgroundError = location.state && location.state.backgroundError;
+  console.log('VER BACKGROUN', location.state);
   return (
     <>
       <Switch location={background || location}>
@@ -33,7 +36,7 @@ function Views({ dataId, cToken, aToken, stylePa }) {
           );
         })}
       </Switch>
-      {background && <Route path="/shipment/:id" children={<InfoPageShipment />} />}
+      {background && <Route path="/shipment/:id" children={<SuccessShipment />} />}
     </>
   );
 }

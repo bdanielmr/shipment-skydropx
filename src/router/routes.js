@@ -3,6 +3,8 @@ import Home from '../views/Home/Home';
 import Error404 from '../views/Error404/Error404';
 import SplashStartSkydropx from '../components/splash-start-skydropx/SplashStartSkydropx';
 import InfoPageShipment from '../views/InfoPageShipment/InfoPageShipment';
+import SuccessShipment from '../views/SuccessShipment/SuccessShipment';
+
 export default [
   {
     name: 'SplashStartSkydropx',
@@ -26,10 +28,10 @@ export default [
     exact: true
   },
   {
-    name: 'InfoPageShipment',
+    name: 'SuccessShipment',
     url: '/shipment',
     path: '/shipment/:id',
-    component: InfoPageShipment,
+    component: SuccessShipment,
     exact: true
   },
   {

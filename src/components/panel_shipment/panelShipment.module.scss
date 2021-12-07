@@ -4,14 +4,30 @@
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 2fr;
-
+  align-items: center;
+  justify-content: center;
   @media (max-width: 800px) {
+    height: 100%;
     grid-template-columns: 1fr;
   }
 }
 .container-right-panel {
   display: flex;
+
   align-items: center;
   flex-direction: column;
-  padding-top: 10%;
+
+  @media (max-width: 800px) {
+    background: blue;
+  }
+}
+.container-left-panel {
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+
+  @media (max-width: 800px) {
+    background: blue;
+  }
 }

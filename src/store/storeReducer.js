@@ -4,7 +4,8 @@ const types = {
   getDataSkyAdviceSuccess: 'get - data - skyadvice - success',
   getDataShipmentsSuccess: 'get - data - shipments - success',
   postDataShipmentsSuccess: 'post - data - shipments - success',
-  getTableOptionsSuccess: 'get - table - options - success'
+  getTableOptionsSuccess: 'get - table - options - success',
+  getRatesOrderSuccess: 'get-rates-order-success'
 };
 
 const initialStore = {
@@ -42,7 +43,8 @@ const initialStore = {
     }
   },
   postDataShipments: {},
-  tableOptions: []
+  tableOptions: [],
+  ratesOrder: null
 };
 
 const storeReducer = (state, action) => {
@@ -71,6 +73,11 @@ const storeReducer = (state, action) => {
       return {
         ...state,
         tableOptions: action.payload
+      };
+    case types.getRatesOrderSuccess:
+      return {
+        ...state,
+        ratesOrder: action.payload
       };
     default:
       return state;
