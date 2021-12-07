@@ -44,7 +44,7 @@ const initialStore = {
   },
   postDataShipments: {},
   tableOptions: [],
-  ratesOrder: null
+  ratesOrder: { data: { attributes: { id: '' } } }
 };
 
 const storeReducer = (state, action) => {

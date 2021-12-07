@@ -21,14 +21,17 @@ const SuccessShipment = ({ match }) => {
 
   const params = useParams();
   console.log('params isSubmitted', params);
-  console.log('ratesOrder ratesOrder');
+  console.log('ratesOrder ratesOrder', ratesOrder);
 
   useEffect(() => {
     async function fetchInfoShipment() {
       const response = await apiGetInfoShipment(
         JSON.stringify({ label_format: 'pdf', rate_id: Number(params.id) })
       );
-
+      dispatch({
+        type: types.getRatesOrderSuccess,
+        payload: response
+      });
       setShipmentInfo(response);
     }
     fetchInfoShipment();
@@ -36,7 +39,6 @@ const SuccessShipment = ({ match }) => {
   console.log('shipmentInfo FINAL', shipmentInfo);
   return (
     <div className={styles['custom-success-shipment']}>
-      {ratesOrder?.[1].attributes.days}
       <CardShipment />
     </div>
   );

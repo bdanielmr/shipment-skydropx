@@ -37,6 +37,7 @@ const TableFormSkydropx = ({ options, tableOption }) => {
       (prev, current) => (prev?.attributes?.days < current?.attributes?.days ? prev : current),
       1
     );
+
     setActiveIndex(minDay.id);
     setChangeBackground('transparent');
     setActiveBadge(true);
@@ -68,8 +69,7 @@ const TableFormSkydropx = ({ options, tableOption }) => {
                 }
                 onClick={() => setActiveIndex(opt?.id)}
                 className={styles['term-grid']}
-                onFocus={(e) => handleFocus(e, opt)}
-              >
+                onFocus={(e) => handleFocus(e, opt)}>
                 <label>{opt?.attributes?.amount_local}$</label>
                 <div className={styles['definition']}>{opt?.attributes?.provider}</div>
                 <div className={styles['alternate']}>{opt?.attributes?.service_level_name}</div>
