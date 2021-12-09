@@ -26,7 +26,6 @@ const InfoPageShipment = ({ match }) => {
 
   return (
     <>
-      <HeaderSkydropx />
       <PanelShipment postDataShipments={postDataShipments} />
     </>
   );

@@ -9,6 +9,7 @@ import HeaderSkydropx from '../../components/header_skydropx/HeaderSkydropx';
 import FormShipSkydropx from '../../components/form-ship-skydropx/FormShipSkydropx';
 import { types } from '../../store/storeReducer';
 import PanelShipment from '../../components/panel_shipment/PanelShipment';
+import CustomAlert from '../../components/custom_alert/CustomAlert';
 const Home = (props) => {
   const [store, dispatch] = useContext(StoreContext);
 
@@ -23,6 +24,14 @@ const Home = (props) => {
     dispatch({
       type: types.getIsSubmittedSuccess,
       payload: true
+    });
+    dispatch({
+      type: types.getTableOptionsSuccess,
+      payload: []
+    });
+    dispatch({
+      type: types.getErrorSuccess,
+      payload: []
     });
   }
   const extraShipments = async () => {
@@ -53,12 +62,7 @@ const Home = (props) => {
     isSubmitted && history.push('/shipments');
   }, [dataSkyAdvice]);
 
-  return (
-    <>
-      <HeaderSkydropx />
-      {!isSubmitted ? <FormShipSkydropx submitForm={submitForm} /> : null}
-    </>
-  );
+  return <>{!isSubmitted ? <FormShipSkydropx submitForm={submitForm} /> : null}</>;
 };
 
 Home.propTypes = {};

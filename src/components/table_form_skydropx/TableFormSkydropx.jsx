@@ -10,7 +10,7 @@ import BadgeSkydropx from '../badge_skydropx/BadgeSkydropx';
 
 const TableFormSkydropx = ({ options, tableOption }) => {
   const [store, dispatch] = useContext(StoreContext);
-  const { tableOptions } = store;
+  const { tableOptions, errorGlobal } = store;
 
   const [activeIndex, setActiveIndex] = useState('');
   const [activeBadge, setActiveBadge] = useState(false);

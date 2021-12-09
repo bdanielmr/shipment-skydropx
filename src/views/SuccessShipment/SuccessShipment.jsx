@@ -17,7 +17,7 @@ import CardShipment from '../../components/card_shipment/CardShipment';
 const SuccessShipment = ({ match }) => {
   const [store, dispatch] = useContext(StoreContext);
   const [shipmentInfo, setShipmentInfo] = useState([]);
-  const { postDataShipments, isSubmitted, ratesOrder } = store;
+  const { ratersOrder, errorGlobal } = store;
 
   const params = useParams();
 
@@ -30,16 +30,23 @@ const SuccessShipment = ({ match }) => {
         type: types.getRatesOrderSuccess,
         payload: response
       });
+      !!response?.message &&
+        dispatch({
+          type: types.getErrorSuccess,
+          payload: response
+        });
+      response?.data?.attributes?.status === 'ERROR' &&
+        dispatch({
+          type: types.getErrorSuccess,
+          payload: response
+        });
+
       setShipmentInfo(response);
     }
     fetchInfoShipment();
   }, [params]);
 
-  return (
-    <div className={styles['custom-success-shipment']}>
-      <CardShipment />
-    </div>
-  );
+  return <div className={styles['custom-success-shipment']}>{<CardShipment />}</div>;
 };
 
 SuccessShipment.propTypes = {

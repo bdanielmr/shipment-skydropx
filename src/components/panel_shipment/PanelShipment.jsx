@@ -7,9 +7,10 @@ import styles from './panelShipment.module.scss';
 import TableFormSkydropx from '../table_form_skydropx/TableFormSkydropx';
 import { types } from '../../store/storeReducer';
 import PersonalInfoSkydropx from '../personal_info_skydropx/PersonalInfoSkydropx';
+import CustomAlert from '../custom_alert/CustomAlert';
 const PanelShipment = ({ postDataShipments }) => {
   const [store, dispatch] = useContext(StoreContext);
-  const { tableOptions } = store;
+  const { tableOptions, erroGlobal } = store;
   useEffect(() => {
     !!postDataShipments?.postDataShip &&
       apiPostShipments(JSON.stringify(postDataShipments?.postDataShip)).then((res) => {
@@ -22,14 +23,16 @@ const PanelShipment = ({ postDataShipments }) => {
   }, [postDataShipments?.postDataShip]);
 
   return (
-    <div className={styles['panel-container']}>
-      <div className={styles['container-left-panel']}>
-        <PersonalInfoSkydropx />
+    <>
+      <div className={styles['panel-container']}>
+        <div className={styles['container-left-panel']}>
+          <PersonalInfoSkydropx />
+        </div>
+        <div className={styles['container-right-panel']}>
+          <TableFormSkydropx />
+        </div>
       </div>
-      <div className={styles['container-right-panel']}>
-        <TableFormSkydropx />
-      </div>
-    </div>
+    </>
   );
 };
 

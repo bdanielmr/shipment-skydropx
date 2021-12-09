@@ -1,28 +1,81 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
+import { useParams } from 'react-router';
 import { StoreContext } from '../../store/StoreProvider';
+import { types } from '../../store/storeReducer';
+
 import styles from './cardShipment.module.scss';
 
 const CardShipment = () => {
-  const [store] = useContext(StoreContext);
-  const { ratesOrder } = store;
-
+  const [store, dispatch] = useContext(StoreContext);
+  const { ratesOrder, errorGlobal } = store;
+  const params = useParams();
   const { data } = ratesOrder;
   const { attributes: atData } = !!data && data;
   const { error_message: setError } = !!atData && atData;
-  function RenderObject() {
-    return Object.keys(ratesOrder?.data?.attributes).map((obj, i) => {
-      console.log(obj, ratesOrder?.data?.attributes[obj], 'obj');
-      return <div key={i}>{`${obj}: ${ratesOrder?.data?.attributes[obj]}`}</div>;
-    });
+  console.log('error', setError);
+
+  function RenderError() {
+    () =>
+      dispatch({
+        type: types.getErrorSuccess,
+        payload: setError
+      });
   }
+
   return (
-    <div className={styles['custom-card-shipment']}>
-      {setError &&
-        setError?.map((err, ide) => {
-          return <p key={ide}>{err.message}</p>;
-        })}
-      {!setError && RenderObject()}
-    </div>
+    <>
+      {!setError ? (
+        <>
+          {!!atData &&
+            /** this needs to refac aint not proud aboud this xd */
+            Object?.keys({ title_card: `Success information package`, ...atData })?.map(
+              (obj, i) => {
+                return (
+                  atData?.[obj] !== null && (
+                    <div
+                      id={i}
+                      style={
+                        i === 0
+                          ? {
+                              backgroundColor: 'palegreen',
+                              border: '1px solid black',
+                              bottom: '1px',
+                              fontWeight: '600'
+                            }
+                          : null
+                      }
+                      className={styles['custom-card-shipment-container']}>
+                      {`
+                    ${
+                      obj === 'title_card'
+                        ? ''
+                        : obj
+                            .split('_')
+                            .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+                            .join(' ')
+                    }`}
+                      <div key={i} className={styles['custom-card-shipment']}>
+                        <div>{`${
+                          typeof atData?.[obj] === 'undefined'
+                            ? 'Shipment Success'
+                            : obj === 'created_at' || obj === 'updated_at'
+                            ? atData?.[obj]?.slice(0, 10)
+                            : atData[obj]
+                        }`}</div>
+                      </div>
+                    </div>
+                  )
+                );
+              }
+            )}
+          {atData?.tracking_url_provider && (
+            <iframe src={atData?.tracking_url_provider} height="500px" width="50%" />
+          )}
+        </>
+      ) : (
+        RenderError()
+      )}
+    </>
   );
 };
 
