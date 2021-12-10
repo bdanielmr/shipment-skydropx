@@ -62,6 +62,21 @@ const TableFormSkydropx = ({ options, tableOption }) => {
               return <label key={opt?.option}>{opt.option}</label>;
             })}
         </div>
+        <div className={styles['button-table-mobile']}>
+          {finalSuccess ? (
+            <div className={styles['button-table-sky-new-mobile']}>
+              <div className={styles['button-table-sky-mobile']}>
+                <button type="submit">Calculate</button>
+              </div>
+            </div>
+          ) : (
+            <div className={styles['button-table-sky-new-mobile']}>
+              <div className={styles['button-table-sky-mobile']}>
+                <button type="submit">Choose other</button>
+              </div>
+            </div>
+          )}
+        </div>
         {tableOptions?.included?.map((opt, ind) => {
           return (
             opt?.type === 'rates' && (

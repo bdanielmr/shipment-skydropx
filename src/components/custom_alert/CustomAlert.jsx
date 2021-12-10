@@ -23,7 +23,8 @@ const CustomAlert = (props) => {
               width: '100%',
               color: 'white',
               fontWeight: '800'
-            }}>
+            }}
+          >
             {errorGlobal?.message}
             {!!messageError &&
               messageError?.map((res, index) => {

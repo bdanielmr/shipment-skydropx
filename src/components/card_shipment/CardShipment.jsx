@@ -96,7 +96,10 @@ const CardShipment = () => {
                   </a>
                 </span>
               )}
-              <iframe src={atData?.tracking_url_provider} height="500px" width="50%" />
+              <iframe
+                className={styles['custom-card-shipment-iframe']}
+                src={atData?.tracking_url_provider}
+              />
             </>
           )}
         </>
