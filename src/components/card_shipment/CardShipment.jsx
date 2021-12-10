@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useEffect, useContext } from 'react';
 import { useParams } from 'react-router';
 import { StoreContext } from '../../store/StoreProvider';
@@ -7,12 +8,11 @@ import styles from './cardShipment.module.scss';
 
 const CardShipment = () => {
   const [store, dispatch] = useContext(StoreContext);
-  const { ratesOrder, errorGlobal } = store;
-  const params = useParams();
+  const { ratesOrder } = store;
+
   const { data } = ratesOrder;
   const { attributes: atData } = !!data && data;
   const { error_message: setError } = !!atData && atData;
-  console.log('error', setError);
 
   function RenderError() {
     () =>
@@ -30,8 +30,10 @@ const CardShipment = () => {
             /** this needs to refac aint not proud aboud this xd */
             Object?.keys({ title_card: `Success information package`, ...atData })?.map(
               (obj, i) => {
+                console.log('atData?.[obj]', atData?.[obj]);
                 return (
-                  atData?.[obj] !== null && (
+                  atData?.[obj] !== null &&
+                  atData?.[obj] !== atData?.label_url && (
                     <div
                       id={i}
                       style={
@@ -47,7 +49,7 @@ const CardShipment = () => {
                       className={styles['custom-card-shipment-container']}>
                       {`
                     ${
-                      obj === 'title_card'
+                      obj === 'title_card' || obj === 'label_url'
                         ? ''
                         : obj
                             .split('_')
@@ -55,7 +57,7 @@ const CardShipment = () => {
                             .join(' ')
                     }`}
                       <div key={i} className={styles['custom-card-shipment']}>
-                        <div>{`${
+                        <div key={i}>{`${
                           typeof atData?.[obj] === 'undefined'
                             ? 'Shipment Success'
                             : obj === 'created_at' || obj === 'updated_at'
@@ -69,7 +71,31 @@ const CardShipment = () => {
               }
             )}
           {atData?.tracking_url_provider && (
-            <iframe src={atData?.tracking_url_provider} height="500px" width="50%" />
+            <>
+              {atData?.label_url && (
+                <span
+                  style={{
+                    width: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                  pdf:{' '}
+                  <a
+                    style={{
+                      padding: '0px 20px ',
+                      display: 'flex',
+                      width: '45%'
+                    }}
+                    target="_blank"
+                    href={atData?.label_url}
+                    rel="noreferrer">
+                    {atData?.label_url}
+                  </a>
+                </span>
+              )}
+              <iframe src={atData?.tracking_url_provider} height="500px" width="50%" />
+            </>
           )}
         </>
       ) : (

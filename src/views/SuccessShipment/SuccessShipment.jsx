@@ -1,27 +1,24 @@
-/* eslint-disable react/display-name */
-/* eslint-disable dot-notation */
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable no-unused-vars */
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-
 import { StoreContext } from '../../store/StoreProvider';
-import { useHistory, useParams } from 'react-router-dom';
-import HeaderSkydropx from '../../components/header_skydropx/HeaderSkydropx';
-import FormShipSkydropx from '../../components/form-ship-skydropx/FormShipSkydropx';
+import { useParams } from 'react-router-dom';
 import { types } from '../../store/storeReducer';
-import PanelShipment from '../../components/panel_shipment/PanelShipment';
+
 import styles from './successShipment.module.scss';
 import { apiGetInfoShipment } from '../../utils/routes';
 import CardShipment from '../../components/card_shipment/CardShipment';
 const SuccessShipment = ({ match }) => {
   const [store, dispatch] = useContext(StoreContext);
-  const [shipmentInfo, setShipmentInfo] = useState([]);
-  const { ratersOrder, errorGlobal } = store;
+  const { loadingConsult } = store;
 
   const params = useParams();
 
   useEffect(() => {
+    dispatch({
+      type: types.getLoadingSuccess,
+      payload: true,
+      payloadShow: false
+    });
     async function fetchInfoShipment() {
       const response = await apiGetInfoShipment(
         JSON.stringify({ label_format: 'pdf', rate_id: Number(params.id) })
@@ -40,13 +37,19 @@ const SuccessShipment = ({ match }) => {
           type: types.getErrorSuccess,
           payload: response
         });
-
-      setShipmentInfo(response);
+      response &&
+        dispatch({
+          type: types.getLoadingSuccess,
+          payload: false,
+          payloadShow: true
+        });
     }
     fetchInfoShipment();
-  }, [params]);
+  }, [params.id]);
 
-  return <div className={styles['custom-success-shipment']}>{<CardShipment />}</div>;
+  return (
+    <div className={styles['custom-success-shipment']}>{!loadingConsult && <CardShipment />}</div>
+  );
 };
 
 SuccessShipment.propTypes = {

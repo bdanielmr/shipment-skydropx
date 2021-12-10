@@ -28,7 +28,30 @@
     border-bottom: unset;
     background: rgb(152, 251, 152);
   }
-
+  .button-table-sky {
+    width: 200px;
+    height: 45px;
+    border-radius: 6%;
+    margin: 5% 0;
+    button {
+      width: 200px;
+      height: 45px;
+      border-radius: 6%;
+      background: #4e34e1;
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    :hover {
+      border: 1px solid black;
+      cursor: pointer;
+    }
+    :focus {
+      background: #4e34e165;
+      border-radius: 6%;
+    }
+  }
   @media (max-width: 600px) {
     .term-grid {
       grid-template-columns: 1fr;

@@ -1,23 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './formShipSkydropx.module.scss';
-import Globe from '../../img/globe.svg';
 import InputSkydropx from '../input-skydropx/InputSkydropx';
-import StepSkydropx from '../step-skydropx/StepSkydropx';
+
 import useForm from '../../hooks/useForm';
 import validateForm from '../../utils/validateForm';
 import LabelForm from '../label_form/LabelForm';
-const FormShipSkydropx = ({ submitForm }) => {
-  const { handleChange, handleSubmit, values, errors } = useForm(submitForm, validateForm);
+
+const FormShipSkydropx = (props) => {
+  const { handleChange, handleSubmit, values, errors } = useForm(validateForm);
 
   return (
     <LabelForm>
       <form onSubmit={handleSubmit} className="form" noValidate>
-        <div className={styles['custom-form-globe']}>
-          <img src={Globe} />
-          <StepSkydropx />
-          <div></div>
-        </div>
+        <div className={styles['custom-form-globe']}></div>
         <div className={styles['custom-form-inputs']}>
           {!!values &&
             Object.keys(values)?.map((key) => {
@@ -32,7 +28,9 @@ const FormShipSkydropx = ({ submitForm }) => {
                 />
               );
             })}
-          <button type="submit">Sign up</button>
+          <div className={styles['button-form-sky']}>
+            <button type="submit">Generate</button>
+          </div>
         </div>
       </form>
     </LabelForm>

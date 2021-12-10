@@ -6,7 +6,8 @@ const types = {
   postDataShipmentsSuccess: 'post - data - shipments - success',
   getTableOptionsSuccess: 'get - table - options - success',
   getRatesOrderSuccess: 'get-rates-order-success',
-  getErrorSuccess: 'get-error-success'
+  getErrorSuccess: 'get-error-success',
+  getLoadingSuccess: 'get-loading-success'
 };
 
 const initialStore = {
@@ -46,7 +47,9 @@ const initialStore = {
   postDataShipments: {},
   tableOptions: [],
   ratesOrder: {},
-  errorGlobal: []
+  errorGlobal: [],
+  loadingConsult: false,
+  showComponent: false
 };
 
 const storeReducer = (state, action) => {
@@ -85,6 +88,12 @@ const storeReducer = (state, action) => {
       return {
         ...state,
         errorGlobal: action.payload
+      };
+    case types.getLoadingSuccess:
+      return {
+        ...state,
+        loadingConsult: action.payload,
+        showComponent: action.payloadShow
       };
     default:
       return state;

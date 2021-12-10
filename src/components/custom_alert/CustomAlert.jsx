@@ -4,7 +4,7 @@ import { useHistory, useLocation } from 'react-router';
 import { StoreContext } from '../../store/StoreProvider';
 const CustomAlert = (props) => {
   const [store, dispatch] = useContext(StoreContext);
-  const { ratesOrder, errorGlobal } = store;
+  const { ratesOrder, errorGlobal, showComponent } = store;
   console.log('CARD ERRO', errorGlobal);
   useEffect(() => {
     console.log('repetir card', errorGlobal);
@@ -18,15 +18,16 @@ const CustomAlert = (props) => {
 
   return (
     <div>
-      {(!!errorGlobal?.message || errorGlobal?.data?.attributes.status === 'ERROR') && (
-        <p style={{ background: 'red', height: '30px', margin: '5px 0px', color: 'white' }}>
-          {errorGlobal?.message}
-          {!!messageError &&
-            messageError?.map((res, index) => {
-              return res?.message;
-            })}
-        </p>
-      )}
+      {showComponent &&
+        (!!errorGlobal?.message || errorGlobal?.data?.attributes.status === 'ERROR') && (
+          <p style={{ background: 'red', height: '30px', margin: '5px 0px', color: 'white' }}>
+            {errorGlobal?.message}
+            {!!messageError &&
+              messageError?.map((res, index) => {
+                return res?.message;
+              })}
+          </p>
+        )}
     </div>
   );
 };
