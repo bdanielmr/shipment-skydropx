@@ -100,7 +100,8 @@ const useForm = (validate) => {
       });
       dispatch({
         type: types.getErrorSuccess,
-        payload: []
+        payload: [],
+        payloadFinal: true
       });
       history.push({
         pathname: `/shipments`

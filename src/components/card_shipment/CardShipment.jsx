@@ -30,7 +30,6 @@ const CardShipment = () => {
             /** this needs to refac aint not proud aboud this xd */
             Object?.keys({ title_card: `Success information package`, ...atData })?.map(
               (obj, i) => {
-                console.log('atData?.[obj]', atData?.[obj]);
                 return (
                   atData?.[obj] !== null &&
                   atData?.[obj] !== atData?.label_url && (
@@ -46,7 +45,8 @@ const CardShipment = () => {
                             }
                           : null
                       }
-                      className={styles['custom-card-shipment-container']}>
+                      className={styles['custom-card-shipment-container']}
+                    >
                       {`
                     ${
                       obj === 'title_card' || obj === 'label_url'
@@ -79,7 +79,8 @@ const CardShipment = () => {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center'
-                  }}>
+                  }}
+                >
                   pdf:{' '}
                   <a
                     style={{
@@ -89,7 +90,8 @@ const CardShipment = () => {
                     }}
                     target="_blank"
                     href={atData?.label_url}
-                    rel="noreferrer">
+                    rel="noreferrer"
+                  >
                     {atData?.label_url}
                   </a>
                 </span>

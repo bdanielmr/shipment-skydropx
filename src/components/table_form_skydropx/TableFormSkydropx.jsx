@@ -7,10 +7,11 @@ import { useHistory } from 'react-router';
 import { useLocation } from 'react-router-dom';
 import { types } from '../../store/storeReducer';
 import BadgeSkydropx from '../badge_skydropx/BadgeSkydropx';
+import ButtonSkydropx from '../button-skydropx/ButtonSkydropx';
 
 const TableFormSkydropx = ({ options, tableOption }) => {
   const [store, dispatch] = useContext(StoreContext);
-  const { tableOptions, errorGlobal, loadingConsult, postDataShipments } = store;
+  const { tableOptions, ratesOrder, errorGlobal, finalSuccess, postDataShipments } = store;
 
   const [activeIndex, setActiveIndex] = useState('');
   const [activeBadge, setActiveBadge] = useState(false);
@@ -18,7 +19,7 @@ const TableFormSkydropx = ({ options, tableOption }) => {
   const [getOptionShip, setGetOptionShip] = useState(null);
   const history = useHistory();
   const location = useLocation();
-
+  console.log('erroGlobal erroGlobal0', errorGlobal);
   const handleFocus = (e, option) => {
     setGetOptionShip(option.id);
     setActiveBadge(false);
@@ -51,7 +52,7 @@ const TableFormSkydropx = ({ options, tableOption }) => {
   useEffect(() => {
     orderShip();
   }, [tableOptions]);
-  console.log('ppppostDataShipments', postDataShipments);
+
   return (
     <div className={styles['table-form-skydropx']}>
       <form onSubmit={handleSubmitTable} id="app" className={styles['wrapper']} noValidate>
@@ -89,9 +90,19 @@ const TableFormSkydropx = ({ options, tableOption }) => {
             )
           );
         })}
-        <div className={styles['button-table-sky']}>
-          <button type="submit">Calculate</button>
-        </div>
+        {finalSuccess ? (
+          <div className={styles['button-table-sky-new']}>
+            <div className={styles['button-table-sky']}>
+              <button type="submit">Calculate</button>
+            </div>
+          </div>
+        ) : (
+          <div className={styles['button-table-sky-new']}>
+            <div className={styles['button-table-sky']}>
+              <button type="submit">Choose other</button>
+            </div>
+          </div>
+        )}
       </form>
     </div>
   );

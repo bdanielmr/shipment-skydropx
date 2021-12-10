@@ -30,13 +30,20 @@ const SuccessShipment = ({ match }) => {
       !!response?.message &&
         dispatch({
           type: types.getErrorSuccess,
-          payload: response
+          payload: response,
+          payloadFinal: true
         });
-      response?.data?.attributes?.status === 'ERROR' &&
-        dispatch({
-          type: types.getErrorSuccess,
-          payload: response
-        });
+      response?.data?.attributes?.status === 'ERROR'
+        ? dispatch({
+            type: types.getErrorSuccess,
+            payload: response,
+            payloadFinal: false
+          })
+        : dispatch({
+            type: types.getErrorSuccess,
+            payload: response,
+            payloadFinal: false
+          });
       response &&
         dispatch({
           type: types.getLoadingSuccess,

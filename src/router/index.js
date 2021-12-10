@@ -23,15 +23,15 @@ export default function ViewsRouter(props) {
 function Views({ dataId, cToken, aToken, stylePa }) {
   // eslint-disable-next-line prefer-const
   const [store] = useContext(StoreContext);
-  const { loadingConsult, showComponent } = store;
+  const { loadingConsult } = store;
   let location = useLocation();
   const background = location.state && location.state.background;
   const backgroundError = location.state && location.state.backgroundError;
-  console.log('loadingConsult', loadingConsult);
+  console.log(location);
   return (
     <>
       {loadingConsult && <CustomLoading />}
-      <HeaderSkydropx />
+      {location?.pathname !== '/' && <HeaderSkydropx />}
       {backgroundError && <Route path="/shipment/:id" children={<CustomAlert />} />}
       <Switch location={background || location}>
         {routes.map((route, i) => {

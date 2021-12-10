@@ -1,32 +1,35 @@
+/* eslint-disable prettier/prettier */
 import PropTypes from 'prop-types';
 import React, { useContext, useEffect } from 'react';
-import { useHistory, useLocation } from 'react-router';
+
 import { StoreContext } from '../../store/StoreProvider';
+
 const CustomAlert = (props) => {
-  const [store, dispatch] = useContext(StoreContext);
-  const { ratesOrder, errorGlobal, showComponent } = store;
-  console.log('CARD ERRO', errorGlobal);
-  useEffect(() => {
-    console.log('repetir card', errorGlobal);
-  }, [errorGlobal]);
+  const [store] = useContext(StoreContext);
+  const { errorGlobal, showComponent } = store;
+
   const { data: dataError } = !!errorGlobal && errorGlobal;
   const { attributes: dataErrorMessage } = !!dataError && dataError;
   const { error_message: messageError } = !!dataErrorMessage && dataErrorMessage;
-  console.log('messageError', messageError);
-  const history = useHistory();
-  const location = useLocation();
 
   return (
     <div>
       {showComponent &&
         (!!errorGlobal?.message || errorGlobal?.data?.attributes.status === 'ERROR') && (
-          <p style={{ background: 'red', height: '30px', margin: '5px 0px', color: 'white' }}>
+          <div
+            style={{
+              background: 'red',
+              height: '25px',
+              width: '100%',
+              color: 'white',
+              fontWeight: '800'
+            }}>
             {errorGlobal?.message}
             {!!messageError &&
               messageError?.map((res, index) => {
                 return res?.message;
               })}
-          </p>
+          </div>
         )}
     </div>
   );

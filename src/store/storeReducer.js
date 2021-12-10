@@ -7,7 +7,8 @@ const types = {
   getTableOptionsSuccess: 'get - table - options - success',
   getRatesOrderSuccess: 'get-rates-order-success',
   getErrorSuccess: 'get-error-success',
-  getLoadingSuccess: 'get-loading-success'
+  getLoadingSuccess: 'get-loading-success',
+  getFinalSuccess: 'get-final-success'
 };
 
 const initialStore = {
@@ -49,7 +50,7 @@ const initialStore = {
   ratesOrder: {},
   errorGlobal: [],
   loadingConsult: false,
-  showComponent: false
+  finalSuccess: true
 };
 
 const storeReducer = (state, action) => {
@@ -87,13 +88,19 @@ const storeReducer = (state, action) => {
     case types.getErrorSuccess:
       return {
         ...state,
-        errorGlobal: action.payload
+        errorGlobal: action.payload,
+        finalSuccess: action.payloadFinal
       };
     case types.getLoadingSuccess:
       return {
         ...state,
         loadingConsult: action.payload,
         showComponent: action.payloadShow
+      };
+    case types.getFinalSuccess:
+      return {
+        ...state,
+        finalSuccess: action.payload
       };
     default:
       return state;
